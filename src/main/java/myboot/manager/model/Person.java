@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @Basic
     @NotNull
     private String firstName;
@@ -35,9 +35,9 @@ public class Person {
     private String email;
     private String web;
     private String birth;
+
+    @Basic
+    @NotNull
     private String password;
-    
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Cv> Cvs;
+
 }

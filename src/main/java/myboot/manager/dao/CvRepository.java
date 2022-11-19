@@ -17,4 +17,5 @@ import myboot.manager.model.Nature;
 @Repository
 @Transactional
 public interface CvRepository  extends JpaRepository<Cv, Long> {
+    List<Cv> findByPersonId(Long postId);
 }

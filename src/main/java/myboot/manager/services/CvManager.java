@@ -23,15 +23,36 @@ public class CvManager {
 	 @Autowired
 	 CvRepository cr;
 
-	 
-	 public void createCv(Cv cv) {
-	        cr.save(cv);
-	    }
+	@Transactional
+	 public Cv createCv(Cv cv) {
+		cr.save(cv);
+		return cv;
+	}
 
-
+	@Transactional
 	public List<Cv> showAllCvs() {
 		List<Cv> cvs = cr.findAll();
 		return cvs;
+	}
+
+	@Transactional
+	public void deleteSingleCv(Long id) {
+		cr.deleteById(id);
+	}
+
+	@Transactional
+	public void updateSinglePost(Long id, Cv cv) {
+		cv.setId(id);
+		cr.save(cv);
+	}
+
+	@Transactional
+	public Cv readSingleCv(Long id) {
+		return cr.findById(id).orElseThrow(() -> new RuntimeException("For id " + id));
+	}
+
+	public List<Cv> findByPersonId(Long personId) {
+		return cr.findByPersonId(personId);
 	}
 }
 

@@ -14,9 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
@@ -26,11 +29,11 @@ public class Cv {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     
     @Basic
     @NotNull
-    private Integer year;
+    private Long year;
     
     @Basic
     @NotNull
@@ -40,11 +43,13 @@ public class Cv {
     @NotNull
     private String title;
     
-    private String descritpion;
+    private String description;
     private String web;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Person person;
     
 }

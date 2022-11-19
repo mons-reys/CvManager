@@ -42,9 +42,24 @@ public class PersonManager {
     }
 
 
+    public List<Person> showAllPersons() {
+        List<Person> persons = pr.findAll();
+        return persons;
+    }
 
-	
+    public void deleteSinglePerson(Long id) {
+        pr.deleteById(id);
+    }
 
+    public void updateSinglePerson(Long id, Person person) {
+        person.setId(id);
+        pr.save(person);
+    }
+
+
+    public Person readSinglePerson(Long id) {
+        return pr.findById(id).orElseThrow(() -> new RuntimeException("For id " + id));
+    }
 }
 
 
