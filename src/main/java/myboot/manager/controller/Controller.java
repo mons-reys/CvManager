@@ -28,12 +28,8 @@ public class Controller {
 
     @PostMapping ("person/{personId}/cvs")
     public ResponseEntity createCV(@PathVariable(value = "personId") Long personId, @RequestBody Cv cvRequest) {
-
-       Person person =  personManager.readSinglePerson(personId);
-       cvRequest.setPerson(person);
-       cvManager.createCv(cvRequest);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        cvManager.createPeronCv(personId, cvRequest);
+       return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
@@ -89,6 +85,11 @@ public class Controller {
     public ResponseEntity updatePersonById(@PathVariable @RequestBody Long id, @RequestBody Person person) {
         personManager.updateSinglePerson(id, person);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping ("/person/find/{id}")
+    public ResponseEntity<List<Person>> showPersonsByPart(@PathVariable @RequestBody String part) {
+        return new ResponseEntity( personManager.findPersonByPart(part), HttpStatus.OK);
     }
 
     @GetMapping("/person/get/{id}")

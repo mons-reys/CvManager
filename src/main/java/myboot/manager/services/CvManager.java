@@ -22,6 +22,8 @@ public class CvManager {
 
 	 @Autowired
 	 CvRepository cr;
+	@Autowired
+	PersonManager pr;
 
 	@Transactional
 	 public Cv createCv(Cv cv) {
@@ -51,8 +53,16 @@ public class CvManager {
 		return cr.findById(id).orElseThrow(() -> new RuntimeException("For id " + id));
 	}
 
+	@Transactional
 	public List<Cv> findByPersonId(Long personId) {
 		return cr.findByPersonId(personId);
+	}
+
+	@Transactional
+	public void createPeronCv(Long personId, Cv cvRequest) {
+		Person person =  pr.readSinglePerson(personId);
+		cvRequest.setPerson(person);
+		cr.save(cvRequest);
 	}
 }
 

@@ -31,15 +31,7 @@ public class PersonManager {
         return persons.get(0);
     }
 
-   
-    public void deletePeron(String firstName) {
-    	List<Person> persons = pr.findByFirstName(firstName);
-    	Person person = persons.get(0);
-    	if(person != null) {
-        	pr.delete(person);
-    	}
-    	
-    }
+
 
 
     public List<Person> showAllPersons() {
@@ -59,6 +51,12 @@ public class PersonManager {
 
     public Person readSinglePerson(Long id) {
         return pr.findById(id).orElseThrow(() -> new RuntimeException("For id " + id));
+    }
+
+
+    public List<Person> findPersonByPart(String part) {
+        List<Person> persons =  pr.findByNameLike(part);
+        return persons;
     }
 }
 
