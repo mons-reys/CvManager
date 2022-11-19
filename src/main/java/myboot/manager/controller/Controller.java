@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -97,5 +98,21 @@ public class Controller {
        Person person =  personManager.readSinglePerson(id);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/app")
+    private ModelAndView hello() {
+        return new ModelAndView("app");
+    }
+
+    @RequestMapping(value = "/showCv")
+    private ModelAndView showCv() {
+        return new ModelAndView("show-cv");
+    }
+
+    @RequestMapping(value = "/saveCv")
+    private ModelAndView save() {
+        return new ModelAndView("add-cv");
+    }
+
 
 }
