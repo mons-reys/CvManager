@@ -15,9 +15,6 @@ import myboot.manager.dao.PersonRepository;
 import myboot.manager.model.Cv;
 import myboot.manager.model.Nature;
 import myboot.manager.model.Person;
-import myboot.manager.services.CvManager;
-import myboot.manager.services.PersonManager;
-
 
 
 @SpringBootTest
@@ -76,51 +73,51 @@ public class TestManagerRepository {
 	}
 
 	
-	@Test
-	public void testSaveCv() {
-		Cv c = new Cv();
-	    c.setDescription("test");
-		c.setTitle("test");
-	    c.setNature(Nature.professional);
-	    c.setYear(2022L);
-	    
-		Cv c2 = cr.save(c);
-		Optional<Cv> c3 = cr.findById(c.getId());
-		assertEquals(c3.get().getDescription(), "test");
-	}
-	
-	@Test
-	public void testDeleteCv() {
-		Cv c = new Cv();
-	    c.setDescription("test");
-		c.setTitle("test");
-	    c.setNature(Nature.professional);
-	    c.setYear(2022L);
-	    
-		Cv c2 = cr.save(c);
-		cr.delete(c);
-		Optional<Cv> c3 = cr.findById(c.getId());
-		assertEquals(c3, Optional.empty());
-	}
-	
-	@Test
-	public void testReplaceCv() {
-		Cv c = new Cv();
-	    c.setDescription("test");
-		c.setTitle("test");
-	    c.setNature(Nature.professional);
-	    c.setYear(2022L);
-	    
-		Cv c2 = cr.save(c);
-		Optional<Cv> c3 = cr.findById(c.getId());
-		
-		Cv c4 = c3.get();
-		c4.getYear();
-		
-		Cv c5 = cr.save(c4);
-		Optional<Cv> c6 = cr.findById(c.getId());
-		assertEquals(c6.get().getYear(), 2022);
-	}
+//	@Test
+//	public void testSaveCv() {
+//		Cv c = new Cv();
+//	    c.setDescription("test");
+//		c.setTitle("test");
+//	    c.setNature(Nature.professional);
+//	    c.setYear(2022L);
+//
+//		Cv c2 = cr.save(c);
+//		Optional<Cv> c3 = cr.findById(c.getId());
+//		assertEquals(c3.get().getDescription(), "test");
+//	}
+//
+//	@Test
+//	public void testDeleteCv() {
+//		Cv c = new Cv();
+//	    c.setDescription("test");
+//		c.setTitle("test");
+//	    c.setNature(Nature.professional);
+//	    c.setYear(2022L);
+//
+//		Cv c2 = cr.save(c);
+//		cr.delete(c);
+//		Optional<Cv> c3 = cr.findById(c.getId());
+//		assertEquals(c3, Optional.empty());
+//	}
+//
+//	@Test
+//	public void testReplaceCv() {
+//		Cv c = new Cv();
+//	    c.setDescription("test");
+//		c.setTitle("test");
+//	    c.setNature(Nature.professional);
+//	    c.setYear(2022L);
+//
+//		Cv c2 = cr.save(c);
+//		Optional<Cv> c3 = cr.findById(c.getId());
+//
+//		Cv c4 = c3.get();
+//		c4.getYear();
+//
+//		Cv c5 = cr.save(c4);
+//		Optional<Cv> c6 = cr.findById(c.getId());
+//		assertEquals(c6.get().getYear(), 2022);
+//	}
 
 	@Test
 	public void testShowPersonsByPart(){

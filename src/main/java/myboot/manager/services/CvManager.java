@@ -1,11 +1,9 @@
 package myboot.manager.services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import myboot.manager.dao.ActivityRepository;
+import myboot.manager.model.Cv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import myboot.manager.dao.CvRepository;
@@ -13,7 +11,6 @@ import myboot.manager.model.Cv;
 import myboot.manager.model.Person;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -24,6 +21,9 @@ public class CvManager {
 	 CvRepository cr;
 	@Autowired
 	PersonManager pr;
+
+	@Autowired
+	ActivityRepository ar;
 
 	@Transactional
 	 public Cv createCv(Cv cv) {
@@ -55,11 +55,12 @@ public class CvManager {
 
 	@Transactional
 	public List<Cv> findByPersonId(Long personId) {
+
 		return cr.findByPersonId(personId);
 	}
 
 	@Transactional
-	public void createPeronCv(Long personId, Cv cvRequest) {
+	public void createPersonCv(Long personId, Cv cvRequest) {
 		Person person =  pr.readSinglePerson(personId);
 		cvRequest.setPerson(person);
 		cr.save(cvRequest);

@@ -1,17 +1,16 @@
 package myboot.manager.dao;
 
-import java.util.List;
-
+import myboot.manager.model.Activity;
 import myboot.manager.model.Cv;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import myboot.manager.model.Cv;
+import java.util.List;
 
 
 @Repository
 @Transactional
-public interface CvRepository  extends JpaRepository<Cv, Long> {
-    List<Cv> findByPersonId(Long postId);
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
+    List<Activity> findByCvId(Long postId);
 }

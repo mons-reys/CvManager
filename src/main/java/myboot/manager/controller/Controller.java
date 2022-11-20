@@ -2,6 +2,8 @@ package myboot.manager.controller;
 
 
 
+import myboot.manager.model.Activity;
+import myboot.manager.model.Cv;
 import myboot.manager.model.Cv;
 import myboot.manager.model.Person;
 import myboot.manager.services.CvManager;
@@ -9,11 +11,9 @@ import myboot.manager.services.PersonManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -26,17 +26,29 @@ public class Controller {
     @Autowired
     private PersonManager personManager;
 
-    @PostMapping ("person/{personId}/cvs")
-    public ResponseEntity createCV(@PathVariable(value = "personId") Long personId, @RequestBody Cv cvRequest) {
-        cvManager.createPeronCv(personId, cvRequest);
+    @PostMapping ("person/{personId}/{cvId}/cvs")
+public ResponseEntity createCV(@PathVariable(value = "personId") Long personId,@PathVariable(value = "cvId") Long cvId, @RequestBody List<Activity> activities) {
+        Cv cv = cvManager.readSingleCv(cvId);
+        activities.forEach(activity -> activity.setCv(cv));
+        cvManager.createPersonCv(personId, cv);
        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping ("{personId}/cv/add")
+    public ResponseEntity createCv(@PathVariable(value = "personId") Long personId) {
+        Cv cv = new Cv();
+        cv.setPerson(personManager.readSinglePerson(personId));
+        cvManager.createCv(cv);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
 
     @GetMapping("/person/{personId}/cvs")
     public ResponseEntity<List<Cv>> showPersonCvs(@PathVariable(value = "personId") Long personId) {
+
         List<Cv> cvs = cvManager.findByPersonId(personId);
+        System.out.println(cvs);
         return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
