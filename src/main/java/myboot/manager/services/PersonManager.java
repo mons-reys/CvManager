@@ -26,9 +26,6 @@ public class PersonManager {
         return persons.get(0);
     }
 
-
-
-
     public List<Person> showAllPersons() {
         List<Person> persons = pr.findAll();
         return persons;

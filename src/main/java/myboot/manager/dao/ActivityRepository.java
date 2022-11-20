@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    List<Activity> findByCvId(Long postId);
+    List<Activity> findByPersonId(Long postId);
 }

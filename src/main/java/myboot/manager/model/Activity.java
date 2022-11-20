@@ -45,6 +45,6 @@ public class Activity {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tutorial_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Cv cv;
+    private Person person;
     
 }
