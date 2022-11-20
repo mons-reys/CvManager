@@ -45,8 +45,9 @@ public class PersonController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping ("/person/find/{id}")
+    @GetMapping ("/person/find/{part}")
     public ResponseEntity<List<Person>> showPersonsByPart(@PathVariable @RequestBody String part) {
+        System.out.println(part);
         return new ResponseEntity( personManager.findPersonByPart(part), HttpStatus.OK);
     }
 

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import myboot.manager.dao.CvRepository;
 import myboot.manager.dao.PersonRepository;
 import myboot.manager.model.Cv;
 import myboot.manager.model.Nature;
@@ -23,8 +22,7 @@ public class TestManagerRepository {
 	@Autowired
 	PersonRepository pr;
 	
-	@Autowired
-	CvRepository cr;
+
 	
 	@Test
 	public void testSavePerson() {
@@ -119,11 +117,11 @@ public class TestManagerRepository {
 //		assertEquals(c6.get().getYear(), 2022);
 //	}
 
-	@Test
-	public void testShowPersonsByPart(){
-		List<Person> p = pr.findByNameLike("mar");
-		assertEquals(true , p.get(0).getFirstName().contains("mar") );
-	}
+//	@Test
+//	public void testShowPersonsByPart(){
+//		List<Person> p = pr.findByNameLike("mar");
+//		assertEquals(true , p.get(0).getFirstName().contains("mar") );
+//	}
 
 	   
 }

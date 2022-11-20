@@ -21,6 +21,8 @@ public interface PersonRepository  extends JpaRepository<Person, Long> {
 	@Query(value = "SELECT * FROM Person p WHERE p.firstname = ?1", nativeQuery = true)
 	List<Person> findByFirstName(String name);
 
-	@Query(value = "SELECT * FROM person p WHERE p.firstname OR p.lastname LIKE BINARY CONCAT('%',:part,'%')", nativeQuery = true)
+	@Query(
+			value = "SELECT * FROM Person p WHERE p.firstname = ?1",
+			nativeQuery = true)
 	List<Person> findByNameLike( @Param("part") String part);
 }
