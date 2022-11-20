@@ -9,12 +9,10 @@ import myboot.manager.services.PersonManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -109,8 +107,13 @@ public class Controller {
         return new ModelAndView("show-cv");
     }
 
+    @RequestMapping(value = "/savePerson")
+    private ModelAndView savePerson() {
+        return new ModelAndView("add-person");
+    }
+
     @RequestMapping(value = "/saveCv")
-    private ModelAndView save() {
+    private ModelAndView saveCv() {
         return new ModelAndView("add-cv");
     }
 

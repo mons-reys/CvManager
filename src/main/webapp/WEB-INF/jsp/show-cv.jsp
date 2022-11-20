@@ -7,7 +7,6 @@
 --%>
 <!DOCTYPE html>
 <%--<c:url var="css" value="/style.css" />--%>
-<jsp:include page="./header.jsp" />
 
 <html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,6 +17,13 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+            <div class="card ">
+                <div class="card-header">
+                    <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+
 <ul class="list-group">
     <li class="list-group-item active">Cras justo odio</li>
     <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -25,6 +31,11 @@
     <li class="list-group-item">Porta ac consectetur ac</li>
     <li class="list-group-item">Vestibulum at eros</li>
 </ul>
+
+
+
+
+                    </div></div></div></div></div></div>
 </body>
 
 </html>
