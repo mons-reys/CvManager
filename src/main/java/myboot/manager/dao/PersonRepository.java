@@ -1,6 +1,7 @@
 package myboot.manager.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,11 @@ public interface PersonRepository  extends JpaRepository<Person, Long> {
 			value = "SELECT * FROM Person p WHERE p.firstname = ?1",
 			nativeQuery = true)
 	List<Person> findByNameLike( @Param("part") String part);
+
+	Person findByUserName(String username);
+	boolean existsByUserName(String username);
+
+	@Transactional
+	void deleteByUserName(String username);
+
 }

@@ -46,7 +46,4 @@ public class CvController {
         activityManager.deletePersonCv(personId);
         return new ResponseEntity(HttpStatus.OK);
     }
-
-
-
 }

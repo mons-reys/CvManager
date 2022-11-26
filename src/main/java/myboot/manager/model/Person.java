@@ -1,17 +1,11 @@
 package myboot.manager.model;
 
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,21 +17,29 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Person {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Basic
-    @NotNull
     private String firstName;
+
     @Basic
-    @NotNull
     private String lastName;
 
-    private String email;
     private String web;
     private String birth;
 
-    @Basic
-    @NotNull
+   // @Size(min = 4, max = 255, message = "Minimum username length: 4 characters")
+  //  @Column(unique = true, nullable = false)
+    private String userName;
+
+   // @Column(unique = true, nullable = false)
+    private String email;
+
+   // @Size(min = 8, message = "Minimum password length: 8 characters")
     private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    Set<String> roles;
 
 }
