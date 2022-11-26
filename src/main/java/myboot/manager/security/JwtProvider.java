@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import io.jsonwebtoken.security.Keys;
 import myboot.manager.model.Person;
 import myboot.manager.security.JwtUserDetails;
 import myboot.manager.security.MyJwtException;
@@ -37,7 +38,7 @@ public class JwtProvider {
 	 * préférable d'avoir un autre API (sur un serveur de configuration) qui nous
 	 * fournisse la clé.
 	 */
-	@Value("${security.jwt.token.secret-key:secret-key}")
+	@Value("${security.jwt.token.secret-key:secret-key-secret-key-secret-key}")
 	private String secretKey;
 
 	@Value("${security.jwt.token.expire-length:3600000}")
@@ -75,7 +76,8 @@ public class JwtProvider {
 				.signWith(SignatureAlgorithm.HS256, secretKey)//
 				.compact();
 
-		this.tokens.add(token);
+		System.out.println(token);
+
 		return token;
 	}
 

@@ -30,7 +30,7 @@ public class Person {
     private String birth;
 
    // @Size(min = 4, max = 255, message = "Minimum username length: 4 characters")
-  //  @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String userName;
 
    // @Column(unique = true, nullable = false)

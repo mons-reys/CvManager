@@ -34,8 +34,6 @@ public class UserService {
 
 	public String login(String username, String password) {
 		try {
-
-
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			var user = userRepository.findByUserName(username);
 			return jwtTokenProvider.createToken(user);
