@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +22,9 @@ public class CvController {
 
     @Autowired
     private ActivityManager activityManager;
+
+    @Autowired
+    private PersonManager personManager;
 
 
     @PostMapping ("person/{personId}/cv")
@@ -33,6 +37,17 @@ public class CvController {
     public ResponseEntity<Cv> showPersonCv(@PathVariable(value = "personId") Long personId) {
         Cv cv = activityManager.findCvByPersonId(personId);
         return new ResponseEntity<>(cv, HttpStatus.OK);
+    }
+
+    @GetMapping("/cvs")
+    public ResponseEntity<List<Cv>> showAllCv() {
+        List<Person> persons = personManager.showAllPersons();
+        List<Cv> cvs = new ArrayList<Cv>();
+        persons.forEach(person -> {
+           Cv cv =  activityManager.findCvByPersonId(person.getId());
+            cvs.add(cv);
+        });
+        return new ResponseEntity<>(cvs, HttpStatus.OK);
     }
 
     @PostMapping("/person/cv/{activityId}")

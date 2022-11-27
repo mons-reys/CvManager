@@ -58,6 +58,7 @@ public class JwtWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/secu-users/**").authenticated()//
 				// Autoriser le reste...
 				.anyRequest().permitAll();
+				//.anyRequest().access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')");
 
 		// Pas vraiment nécessaire
 		http.exceptionHandling().accessDeniedPage("/secu-users/login");

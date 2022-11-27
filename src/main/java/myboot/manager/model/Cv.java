@@ -13,6 +13,7 @@ public class Cv {
 
     private List<Activity> activities;
 
+
     private Person person;
     
 }

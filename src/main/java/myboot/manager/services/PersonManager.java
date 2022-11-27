@@ -42,7 +42,7 @@ public class PersonManager {
 
 
     public Person readSinglePerson(Long id) {
-        return pr.findById(id).orElseThrow(() -> new RuntimeException("For id " + id));
+        return pr.findById(id).orElseThrow(() -> new RuntimeException("can't find person with id " + id));
     }
 
 
