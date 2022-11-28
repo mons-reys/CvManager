@@ -42,7 +42,7 @@ public class Activity {
     private String description;
     private String web;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tutorial_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Person person;

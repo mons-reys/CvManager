@@ -2,9 +2,11 @@ package myboot.manager.controller;
 
 
 
+import com.fasterxml.jackson.annotation.JsonView;
 import myboot.manager.model.Activity;
 import myboot.manager.model.Cv;
 import myboot.manager.model.Person;
+import myboot.manager.model.Views;
 import myboot.manager.services.ActivityManager;
 import myboot.manager.services.PersonManager;
 import org.springframework.beans.factory.annotation.Autowired;
