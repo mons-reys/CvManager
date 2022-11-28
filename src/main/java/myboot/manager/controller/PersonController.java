@@ -3,6 +3,7 @@ package myboot.manager.controller;
 
 
 import myboot.manager.model.Activity;
+import myboot.manager.model.AppUserRole;
 import myboot.manager.model.Cv;
 import myboot.manager.model.Person;
 import myboot.manager.services.ActivityManager;
@@ -13,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")

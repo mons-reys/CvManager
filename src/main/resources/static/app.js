@@ -11,7 +11,8 @@ const myApp = {
             list: [10, 20, 30],
             axios: null,
             cvs: [],
-            movie: null,
+            activities: null,
+            cv: null,
             editable: null,
             errors: [],
             isAddMovie: false,
@@ -50,6 +51,10 @@ const myApp = {
             this.axios.get("api/cvs")
                 .then(cvs => {
                     this.cvs = cvs.data;
+                    for (let i = 0; i < this.cvs.length ; i++) {
+                        this.activities = this.cvs[i];
+                        console.log(this.activities);
+                    }
                 });
         },
 
@@ -61,13 +66,13 @@ const myApp = {
         //         });
         // },
 
-        // showMovie: function(id) {
-        //     this.axios.get('api/movies/' + id)
-        //         .then(r => {
-        //             console.log("movie fetched to show");
-        //             this.movie = r.data;
-        //         });
-        // },
+        showCv: function(id) {
+            this.axios.get('api/person/'+ id + '/cv' )
+                .then(r => {
+                    console.log("cv fetched to show");
+                    this.activities = r.data;
+                });
+        },
         //
         // editMovie: async function(movie) {
         //     console.log("Movie with id " + movie.id + " is set to be modified");
